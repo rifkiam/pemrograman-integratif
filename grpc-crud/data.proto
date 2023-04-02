@@ -1,0 +1,34 @@
+syntax = "proto3";
+
+package data;
+
+service MovieData {
+    rpc CreateMovie (Movie) returns (Movie) {}
+    rpc ReadAllMovies (Empty) returns (MovieList) {}
+    rpc ReadMovie (MovieRequest) returns (Movie) {}
+    rpc UpdateMovie (UpdateMovieRequest) returns (Movie) {}
+    rpc DeleteMovie (MovieRequest) returns (Movie) {}
+}
+
+message Empty {}
+
+message Movie {
+    string name = 1;
+    string release = 2;
+    int32 rating = 3;
+}
+
+message UpdateMovieRequest {
+    string name = 1;
+    string release = 2;
+    int32 rating = 3;
+    int32 id = 4;
+}
+
+message MovieList {
+    repeated Movie movie = 1;
+}
+
+message MovieRequest {
+    int32 id = 1;
+}
